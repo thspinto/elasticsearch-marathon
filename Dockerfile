@@ -4,4 +4,4 @@ COPY cluster /
 
 EXPOSE 9200 9300
 ENTRYPOINT ["/cluster"]
-CMD ["elasticsearch"]
+CMD ["start_elasticsearch.sh"]
