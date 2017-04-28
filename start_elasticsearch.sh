@@ -17,4 +17,4 @@ do
 done
 
 cat ./config/elasticsearch.yml
-exec elasticsearch
+exec ./cluster
