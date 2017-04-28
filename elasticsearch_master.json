@@ -1,0 +1,28 @@
+
+{
+  "id": "/logs/elasticsearch-master",
+  "cmd": "export ES_HTTP_PORT=$PORT0 && export ES_TRANSPORT_TCP_PORT=$PORT1 && start_elasticsearch.sh",
+  "cpus": 0.5,
+  "mem": 1024,
+  "instances": 1,
+  "container": {
+    "type": "DOCKER",
+    "docker": {
+      "image": "thspinto/elasticsearch-marathon",
+      "network": "BRIDGE",
+      "portMappings": [
+        { "protocol": "tcp", "containerPort": 9200 },
+        { "protocol": "tcp", "containerPort": 9300 }
+      ]
+    }
+  },
+  "env": {
+    "MARATHON_ADDR": "http://marathon.mesos:8080",
+    "ELASTICSEARCH_CLUSTER_NAME": "mesos-ha",
+    "ELASTICSEARCH_NODE_MASTER": "true",
+    "ELASTICSEARCH_NODE_DATA": "false",
+    "ELASTICSEARCH_HTTP_CORS_ENABLED": "true",
+    "ELASTICSEARCH_HTTP_CORS_ALLOW-ORIGIN": "*",
+    "HOSTNAME_COMMAND": "wget -t3 -T2 -qO-  http://169.254.169.254/latest/meta-data/local-ipv4"
+  }
+}
