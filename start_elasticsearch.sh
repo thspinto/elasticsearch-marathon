@@ -1,5 +1,8 @@
 #!/bin/bash
 
+if [[ -z "$ES_NETWORK_PUBLISH_HOST" && -n "$HOSTNAME_COMMAND" ]]; then
+    export ES_NETWORK_PUBLISH_HOST=$(eval $HOSTNAME_COMMAND)
+fi
 for VAR in `env`
 do
   if [[ $VAR =~ ^ES_ ]]; then
