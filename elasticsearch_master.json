@@ -1,7 +1,7 @@
 
 {
   "id": "/logs/elasticsearch-master",
-  "cmd": "export ES_HTTP_PORT=$PORT0 && export ES_TRANSPORT_TCP_PORT=$PORT1 && elasticsearch",
+  "cmd": "export ES_HTTP_PORT=$PORT0 && export ES_TRANSPORT_TCP_PORT=$PORT1",
   "cpus": 0.5,
   "mem": 1024,
   "instances": 1,

@@ -8,4 +8,3 @@ USER elasticsearch
 
 EXPOSE 9200 9300
 ENTRYPOINT ["./start_elasticsearch.sh"]
-CMD ["elasticsearch"]

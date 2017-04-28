@@ -1,5 +1,7 @@
 #!/bin/bash
 
+eval "$@"
+
 if [[ -z "$ES_NETWORK_PUBLISH_HOST" && -n "$HOSTNAME_COMMAND" ]]; then
     export ES_NETWORK_PUBLISH_HOST=$(eval $HOSTNAME_COMMAND)
 fi
@@ -17,4 +19,6 @@ do
 done
 
 cat ./config/elasticsearch.yml
-exec ./cluster
+./cluster
+
+exec elasticsearch
