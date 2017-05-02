@@ -1,14 +1,14 @@
 
 {
   "id": "/logs/elasticsearch-master",
-  "cmd": "export ES_HTTP_PORT=$PORT0 && export ES_TRANSPORT_TCP_PORT=$PORT1",
+  "cmd": "export ES_HTTP_PORT=$PORT0 && export ES_TRANSPORT_TCP_PORT=$PORT1 && ./start_elasticsearch.sh",
   "cpus": 0.5,
   "mem": 1024,
   "instances": 1,
   "container": {
     "type": "DOCKER",
     "docker": {
-      "image": "thspinto/elasticsearch-marathon",
+      "image": "thspinto/elasticsearch-marathon:latest",
       "network": "BRIDGE",
       "portMappings": [
         { "protocol": "tcp", "containerPort": 9200 },

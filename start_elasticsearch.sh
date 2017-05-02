@@ -2,13 +2,13 @@
 
 eval "$@"
 
-if [[ -z "$ES_NETWORK_PUBLISH_HOST" && -n "$HOSTNAME_COMMAND" ]]; then
-    export ES_NETWORK_PUBLISH_HOST=$(eval $HOSTNAME_COMMAND)
+if [[ -z "$ES_NETWORK_PUBLISH__HOST" && -n "$HOSTNAME_COMMAND" ]]; then
+    export ES_NETWORK_PUBLISH__HOST=$(eval $HOSTNAME_COMMAND)
 fi
 for VAR in `env`
 do
   if [[ $VAR =~ ^ES_ ]]; then
-    es_name=`echo "$VAR" | sed -r "s/ES_(.*)=.*/\1/g" | tr '[:upper:]' '[:lower:]' | tr _ .`
+    es_name=`echo "$VAR" | sed -r "s/ES_(.*)=.*/\1/g" | tr '[:upper:]' '[:lower:]' | tr _ . | sed -r "s/\.\./_/g"`
     env_var=`echo "$VAR" | sed -r "s/(.*)=.*/\1/g"`
     if egrep -q "(^|^#)$es_name: " ./config/elasticsearch.yml; then
         sed -r -i "s@(^|^#)($es_name): (.*)@\2: ${!env_var}@g" ./config/elasticsearch.yml #note that no config values may contain an '@' char
